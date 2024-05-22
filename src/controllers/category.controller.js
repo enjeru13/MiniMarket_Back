@@ -1,27 +1,10 @@
 import Category from "../models/category.model.js";
 
 // Obtener todas las categorías
-export const getAllCategories = async (req, res) => {
-  try {
-    const categories = await Category.find({
-      name: req.name.id,
-    }).populate('name')
-    res.json(categories);
-  } catch (err) {
-    res.status(500).json({ message: "Error al obtener categorías" });
-  }
-};
-
-// Obtener una categoría por ID
-export const getCategory = async (req, res) => {
-  try {
-    const category = await Category.findById(req.params.id).populate('user');
-    if (!category) return res.status(404).json({ message: "Categoría no encontrada" });
-    res.json(category);
-  } catch (error) {
-    return res.status(404).json({ message: "Error al obtener categoría" });
-  }
-};
+export const getCategories = async (req, res) => {
+    const categories = await Category.find()
+    res.json(categories)
+}
 
 // Crear una nueva categoría
 export const createCategory = async (req, res) => {
@@ -36,6 +19,19 @@ export const createCategory = async (req, res) => {
     return res.status(500).json({ message: "Error al crear categoría" });
   }
 };
+
+// Obtener una categoría por ID
+export const getCategory = async (req, res) => {
+  try {
+    const category = await Category.findById(req.params.id).populate('user');
+    if (!category) return res.status(404).json({ message: "Categoría no encontrada" });
+    res.json(category);
+  } catch (error) {
+    return res.status(404).json({ message: "Error al obtener categoría" });
+  }
+};
+
+
 
 // Actualizar una categoría
 export const updateCategory = async (req, res) => {

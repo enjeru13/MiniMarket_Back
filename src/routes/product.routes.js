@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  getAllProducts,
+  getProducts,
   getProduct,
   createProduct,
   updateProduct,
@@ -10,7 +10,7 @@ import { authRequired } from "../middlewares/validateToken.js";
 
 const router = Router();
 
-router.get("/products", authRequired, getAllProducts);
+router.get("/products", authRequired, getProducts);
 
 router.get("/products/:id", authRequired, getProduct);
 

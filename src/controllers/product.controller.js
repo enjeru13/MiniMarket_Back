@@ -2,16 +2,10 @@ import Product from "../models/product.model.js";
 
 // Obtener todos los productos
 
-export const getAllProducts = async (req, res) => {
-  try {
-    const products = await Product.find({
-      user: req.user.id,
-    }).populate('user')
-    res.json(products);
-  } catch (err) {
-    res.status(500).json({ message: "Error al obtener productos" });
-  }
-};
+export const getProducts = async (req, res) => {
+  const products = await Product.find()
+  res.json(products)
+}
 
 
 export const getProduct = async (req, res) => {
